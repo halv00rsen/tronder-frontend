@@ -1,35 +1,61 @@
-import React, { useState } from 'react';
-import { Store } from '../store/Store';
-import { inject, observer } from 'mobx-react';
+import React, { useState, useEffect } from 'react';
+import { Auth, Hub } from 'aws-amplify';
+import { InjectedStoreProps } from 'store/Store';
+import { inject } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
+import ApplicationView from './ApplicationView';
+import LoginView from './LoginView';
+import { HubCapsule } from '@aws-amplify/core/lib/Hub';
 
-interface MainViewProps {
-}
 
-interface InjectedProps {
-  store: Store;
-}
+const MainView: React.FC = (props) => {
 
-const MainView: React.FC<MainViewProps> = (props) => {
+  const [loading, setLoading] = useState(true);
+  const [store] = useState((props as InjectedStoreProps).store);
 
-  const [word, setWord] = useState('');
-  const [store] = useState((props as InjectedProps).store);
 
-  const addWord = () => {
-    store.wordStore.addWord({
-      text: word,
+  useEffect(() => {
+    const setLoggedUser = (data: any) => {
+      setLoading(false);
+      if (data) {
+        store.system.setUserInfo({
+          email: data.attributes.email,
+          name: data.attributes.name,
+        });
+      } else {
+        store.system.setUserInfo(undefined);
+      }
+    };
+
+    Auth.currentAuthenticatedUser().then((user) => {
+      setLoggedUser(user);
+    }).catch(err => {
+      setLoggedUser(undefined);
     });
-    setWord('');
-  }
+
+    const listener = (data: HubCapsule) => {
+      if (data.payload.event === 'signIn') {
+        setLoggedUser(data.payload.data);
+      } else {
+        setLoggedUser(undefined);
+      }
+    };
+
+    Hub.listen('auth', listener);
+    return () => {
+      Hub.remove('auth', listener);
+    };
+  }, [store.system]);
+
 
   return (
     <div>
-      {store.wordStore.words.map((word) => {
-        return <div key={word.text}>{word.text}</div>
-      })}
-      <input type="text" value={word} onChange={(e) => setWord(e.target.value)} />
-      <button onClick={addWord}>Lagre</button>
+      {loading ?
+        'laster...' :
+        (store.system.isLoggedIn ? <ApplicationView/> : <LoginView/>)
+      }
     </div>
   );
-}
+};
 
 export default inject('store')(observer(MainView));
