@@ -1,36 +1,28 @@
-import React, { useState } from 'react';
-import { Store } from '../store/Store';
+import React, { useState, useEffect } from 'react';
+import { Store, InjectedStoreProps } from '../store/Store';
 import { inject, observer } from 'mobx-react';
-import { Auth } from 'aws-amplify';
+import { RouteComponentProps } from 'react-router';
+import { routes } from 'routes';
 
-interface WordViewProps {
-}
-
-interface InjectedProps {
-  store: Store;
+interface WordViewProps extends InjectedStoreProps, RouteComponentProps {
 }
 
 const WordView: React.FC<WordViewProps> = (props) => {
 
-  const [word, setWord] = useState('');
-  const [store] = useState((props as InjectedProps).store);
-
-  const addWord = () => {
-    store.wordStore.addWord({
-      text: word,
-    });
-    setWord('');
-  }
+  const [isWord] = useState(props.location.pathname === routes.words.path);
+  const [list] = useState(isWord ? props.store.wordStore.words : props.store.wordStore.expressions);
 
   return (
     <div>
-      {store.wordStore.words.map((word) => {
-        return <div key={word.text}>{word.text}</div>
+      {list.map((word) => {
+        return (
+          <div key={word.text}>
+            {word.text} - {word.meaning}
+          </div>
+        );
       })}
-      <input type="text" value={word} onChange={(e) => setWord(e.target.value)} />
-      <button onClick={addWord}>Lagre</button>
     </div>
   );
-}
+};
 
 export default inject('store')(observer(WordView));

@@ -1,6 +1,7 @@
 {
     "rules": {
         "quotemark": [true, "single", "jsx-double"],
-        "semicolon": [true, "always"]
+        "semicolon": [true, "always"],
+        "no-unused-variable": true
     }
 }
