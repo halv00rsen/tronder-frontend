@@ -9,6 +9,7 @@ type Routes = {
   expressions: DisplayRoute,
   notFound: DisplayRoute,
   newEntry: DisplayRoute,
+  login: DisplayRoute,
 };
 
 
@@ -23,10 +24,14 @@ export const routes: Routes = {
   },
   notFound: {
     displayName: 'Ikke funnet',
-    path: '/**',
+    path: '/notFound',
   },
   newEntry: {
     displayName: 'Nytt uttrykk',
     path: '/new',
-  }
+  },
+  login: {
+    displayName: 'Logg inn',
+    path: '/login',
+  },
 };

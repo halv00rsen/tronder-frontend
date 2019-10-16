@@ -4,7 +4,6 @@ import { InjectedStoreProps } from 'store/Store';
 import { inject } from 'mobx-react';
 import { observer } from 'mobx-react-lite';
 import ApplicationView from './ApplicationView';
-import LoginView from './LoginView';
 import { HubCapsule } from '@aws-amplify/core/lib/Hub';
 
 
@@ -51,8 +50,7 @@ const MainView: React.FC = (props) => {
   return (
     <div>
       {loading ?
-        'laster...' :
-        (store.system.isLoggedIn ? <ApplicationView/> : <LoginView/>)
+        'laster...' : <ApplicationView/>
       }
     </div>
   );

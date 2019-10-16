@@ -12,12 +12,16 @@ Amplify.configure({
   ...awsconfig,
   API: {
     endpoints: [{
-      name: 'meetwithme',
-      endpoint: 'http://localhost:8080',
+      name: 'tronder-api',
+      endpoint: 'http://localhost:1234',
       custom_header: async () => {
-        return {
-          'Authorization': (await Auth.currentSession()).getIdToken().getJwtToken(),
-        };
+        try {
+          return {
+            'Authorization': 'Bearer ' + (await Auth.currentSession()).getIdToken().getJwtToken(),
+          };
+        } catch {
+          return {};
+        }
       }
     }],
   }
