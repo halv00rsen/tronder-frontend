@@ -12,12 +12,16 @@ const NewEntryView: React.FC<NewEntryViewProps> = (props) => {
 
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
+  const [description, setDescription] = useState('');
+
 
   const submitWord = (event: FormEvent) => {
     event.preventDefault();
     props.store.wordStore.addWord({
-      meaning: meaning.trim(),
-      text: word.trim(),
+      wordText: word.trim(),
+      description: description.trim(),
+      translation: meaning.trim(),
+      id: -1,
     });
     props.history.push(routes.words.path);
   };
@@ -25,12 +29,15 @@ const NewEntryView: React.FC<NewEntryViewProps> = (props) => {
   return (
     <div>
       <form onSubmit={(e) => submitWord(e)}>
-        <input type="text" value={word} name="word" required={true}
+        <input type="text" value={word} name="word" required={true} placeholder="Ord/uttrykk"
           onChange={(e) => setWord(e.target.value)}/>
         <br/>
-        <input type="text" value={meaning} name="meaning" required={true}
+        <input type="text" value={meaning} name="meaning" required={true} placeholder="Betydning"
           onChange={(e) => setMeaning(e.target.value)}/>
         <input type="submit" value="Lagre"/>
+        <br/>
+        <input type="text" value={description} placeholder="Beskrivelse"
+          onChange={(e) => setDescription(e.target.value)}/>
       </form>
     </div>
   );

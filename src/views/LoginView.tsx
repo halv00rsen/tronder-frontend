@@ -10,13 +10,13 @@ import { routes } from 'routes';
 const LoginView: React.FC = (props) => {
   const [store] = useState((props as InjectedStoreProps).store);
   if (store.system.isLoggedIn) {
-    return <Redirect to={routes.expressions.path}/>
+    return <Redirect to={routes.dialect.path}/>;
   }
   return (
     <div className="App">
       <div className="header">
         <div className="header-content">
-          <h2>Meet With Me</h2>
+          <h2>Trøndr</h2>
         </div>
       </div>
       <div className="content">

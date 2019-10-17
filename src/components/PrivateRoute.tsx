@@ -7,6 +7,7 @@ import { routes } from 'routes';
 interface PrivateRouteProps {
   component: React.FC<any>;
   path: string;
+  condition?: boolean;
 }
 
 interface CombinedProps extends PrivateRouteProps, InjectedStoreProps {
@@ -15,7 +16,7 @@ interface CombinedProps extends PrivateRouteProps, InjectedStoreProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = (props) => {
   const [store] = useState((props as CombinedProps).store);
-  if (store.system.isLoggedIn) {
+  if ((props.condition === undefined && store.system.isLoggedIn) || props.condition) {
     return (
       <Route path={props.path} component={props.component}/>
     );

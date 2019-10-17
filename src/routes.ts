@@ -6,10 +6,10 @@ interface DisplayRoute {
 
 type Routes = {
   words: DisplayRoute,
-  expressions: DisplayRoute,
   notFound: DisplayRoute,
   newEntry: DisplayRoute,
   login: DisplayRoute,
+  dialect: DisplayRoute,
 };
 
 
@@ -17,10 +17,6 @@ export const routes: Routes = {
   words: {
     displayName: 'Ord',
     path: '/words',
-  },
-  expressions: {
-    displayName: 'Uttrykk',
-    path: '/expressions',
   },
   notFound: {
     displayName: 'Ikke funnet',
@@ -33,5 +29,9 @@ export const routes: Routes = {
   login: {
     displayName: 'Logg inn',
     path: '/login',
+  },
+  dialect: {
+    displayName: 'Dialect',
+    path: '/dialect',
   },
 };

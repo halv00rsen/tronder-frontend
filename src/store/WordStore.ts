@@ -1,24 +1,40 @@
 import { observable, action } from 'mobx';
+import { Dialect } from './SystemStore';
+import { API } from 'aws-amplify';
 
 export interface Word {
-  text: string;
-  meaning: string;
+  id: number;
+  wordText: string;
+  translation: string;
+  description: string;
 }
 
 export class WordStore {
   @observable words: Word[] = [];
-  @observable expressions: Word[] = [];
+  @observable activeDialect?: Dialect = undefined;
 
   @action
   addWord(word: Word) {
-    if (this.isSentence(word)) {
-      this.expressions.push(word);
-    } else {
-      this.words.push(word);
+    if (!this.activeDialect) {
+      return;
     }
+    API.post('tronder-api', `/dialect/${this.activeDialect.id}/word`, {
+      body: word,
+    }).then((word: Word) => {
+      this.words.push(word);
+    });
   }
 
-  private isSentence(word: Word): boolean {
-    return word.text.indexOf(' ') > -1;
+  @action
+  setActiveDialect(dialect?: Dialect) {
+    if (dialect) {
+      this.activeDialect = dialect;
+      API.get('tronder-api', `/dialect/${dialect.id}/word`, {}).then((words: Word[]) => {
+        this.words = words;
+      });
+    } else {
+      this.activeDialect = undefined;
+      this.words = [];
+    }
   }
 }

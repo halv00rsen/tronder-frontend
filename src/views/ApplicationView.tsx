@@ -14,6 +14,11 @@ import PrivateRoute from 'components/PrivateRoute';
 const ApplicationView: React.FC = (props) => {
 
   const [store] = useState((props as InjectedStoreProps).store);
+  const [activeDialect, setActiveDialect] = useState(store.wordStore.activeDialect !== undefined);
+
+  useEffect(() => {
+    setActiveDialect(store.wordStore.activeDialect !== undefined);
+  }, [store.wordStore.activeDialect]);
 
   useEffect(() => {
     API.get('tronder-api', '/dialect', {}).then((dialects: Dialect[]) => {
@@ -28,7 +33,7 @@ const ApplicationView: React.FC = (props) => {
   return (
     <Router>
       <div className="header">
-        Trøndr
+        Trøndr {store.wordStore.activeDialect && ` - ${store.wordStore.activeDialect.displayName}`}
         {store.system.isLoggedIn ?
           <div>
             <button onClick={logout}>Logg ut</button>
@@ -43,9 +48,10 @@ const ApplicationView: React.FC = (props) => {
       </div>
       <div className="content">
         <Switch>
-          <Route path={routes.words.path}
+          <PrivateRoute path={routes.words.path}
+            condition={activeDialect}
             component={WordView}/>
-          <Route path={routes.expressions.path}
+          <Route path={routes.dialect.path}
             component={DialectView}/>
           <PrivateRoute path={routes.newEntry.path}
             component={NewEntryView}/>
@@ -56,17 +62,19 @@ const ApplicationView: React.FC = (props) => {
           </Route>
         </Switch>
       </div>
-      <div className="navigation">
-        <NavLink className="router-link" activeClassName="router-link-active" to={routes.words.path}>
-          {routes.words.displayName}
-        </NavLink>
-        <NavLink className="router-link" activeClassName="router-link-active" to={routes.expressions.path}>
-          {routes.expressions.displayName}
-        </NavLink>
-        <NavLink className="router-link" activeClassName="router-link-active" to={routes.newEntry.path}>
-          {routes.newEntry.displayName}
-        </NavLink>
-      </div>
+      {activeDialect &&
+        <div className="navigation">
+          <NavLink className="router-link" activeClassName="router-link-active" to={routes.words.path}>
+            {routes.words.displayName}
+          </NavLink>
+          <NavLink className="router-link" activeClassName="router-link-active" to={routes.newEntry.path}>
+            {routes.newEntry.displayName}
+          </NavLink>
+          <NavLink className="router-link" activeClassName="router-link-active" to={routes.dialect.path}>
+            {routes.dialect.displayName}
+          </NavLink>
+        </div>
+      }
     </Router>
   );
 };

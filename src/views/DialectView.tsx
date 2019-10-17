@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { API } from 'aws-amplify';
 import { Dialect } from 'store/SystemStore';
 import PrivateComponent from 'components/PrivateComponent';
+import DialectEntry from 'components/DialectEntry';
 
 const DialectView: React.FC = (props) => {
 
@@ -27,7 +28,7 @@ const DialectView: React.FC = (props) => {
   return (
     <div>
       {store.system.dialects.map(dialect => {
-        return <div key={dialect.id}>{dialect.displayName}</div>;
+        return <DialectEntry key={dialect.id} dialect={dialect}/>;
       })}
       <PrivateComponent>
         <input type="text" value={name} required={true}
