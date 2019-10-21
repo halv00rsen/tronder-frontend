@@ -4,35 +4,9 @@
   box-sizing: border-box;
 }
 
-.header {
-  height: 10vh;
-  background-color: #375c5c;
-  color: white;
-  width: 100%;
-}
 
-.header-text {
-  text-decoration: none;
-  color: white;
-}
 
-.header-content {
-  max-width: 1000px;
-  margin: auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 1em 0 1em;
-  justify-content: space-between;
-}
 
-.home-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 90vh;
-}
 
 .router-link {
   color: white;
@@ -46,11 +20,7 @@
   border: 1px solid black;
 }
 
-.content {
-  max-width: 1000px;
-  margin: auto;
-  padding: 0 1em 0 1em;
-}
+
 
 .dialect-entry {
   margin: 1em;
@@ -70,18 +40,7 @@
   font-size: 80%;
 }
 
-.word-view-header {
-  font-size: 150%;
-  padding: 1em 0 1em 0;
-}
 
-.word-view-words {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: stretch;
-  flex-direction: column;
-}
 
 .word-entry {
   border: 1px solid gray;

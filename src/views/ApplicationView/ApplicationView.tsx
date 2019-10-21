@@ -8,6 +8,8 @@ import { inject, observer } from 'mobx-react';
 import NavigationLink from 'components/NavigationLink';
 import Routes from 'components/Routes';
 
+import './ApplicationView.css';
+
 const ApplicationView: React.FC = (props) => {
 
   const [store] = useState((props as InjectedStoreProps).store);

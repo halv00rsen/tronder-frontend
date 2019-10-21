@@ -1,0 +1,13 @@
+
+.word-view-header {
+  font-size: 150%;
+  padding: 1em 0 1em 0;
+}
+
+.word-view-words {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-direction: column;
+}

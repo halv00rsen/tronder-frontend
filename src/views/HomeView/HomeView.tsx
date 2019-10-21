@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { routes } from 'routes';
 
+import './HomeView.css';
+
 const HomeView: React.FC = () => {
   return (
     <div className="home-view">

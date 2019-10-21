@@ -7,6 +7,8 @@ import { routes } from 'routes';
 import { NavLink } from 'react-router-dom';
 import WordEntry from 'components/WordEntry';
 
+import './WordView.css';
+
 interface WordViewProps extends InjectedStoreProps, RouteComponentProps {
 }
 

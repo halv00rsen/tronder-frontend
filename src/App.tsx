@@ -6,7 +6,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from 'aws-exports';
 
 import { store } from 'store/Store';
-import MainView from 'views/MainView';
+import MainView from 'views/MainView/MainView';
 
 Amplify.configure({
   ...awsconfig,

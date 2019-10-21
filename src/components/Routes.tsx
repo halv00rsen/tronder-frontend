@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Switch, Route } from 'react-router';
 import PrivateRoute from './PrivateRoute';
 import { routes } from 'routes';
-import WordView from 'views/WordView';
-import DialectView from 'views/DialectView';
-import NewEntryView from 'views/NewEntryView';
-import UserView from 'views/UserView';
-import LoginView from 'views/LoginView';
+import WordView from 'views/WordView/WordView';
+import DialectView from 'views/DialectView/DialectView';
+import NewEntryView from 'views/NewEntries/NewEntryView';
+import UserView from 'views/UserView/UserView';
+import LoginView from 'views/LoginView/LoginView';
 import { InjectedStoreProps } from 'store/Store';
 import { inject } from 'mobx-react';
 import { observer } from 'mobx-react-lite';
-import NewDialectView from 'views/NewDialectView';
-import HomeView from 'views/HomeView';
+import NewDialectView from 'views/NewEntries/NewDialectView';
+import HomeView from 'views/HomeView/HomeView';
 
 const Routes: React.FC = (props) => {
   const [store] = useState((props as InjectedStoreProps).store);
@@ -29,6 +29,7 @@ const Routes: React.FC = (props) => {
         Ikke funnet
       </Route>
       <Route
+        exact={true}
         path={routes.home.path}
         component={HomeView}/>
 

@@ -3,7 +3,7 @@ import { Auth, Hub } from 'aws-amplify';
 import { InjectedStoreProps } from 'store/Store';
 import { inject } from 'mobx-react';
 import { observer } from 'mobx-react-lite';
-import ApplicationView from './ApplicationView';
+import ApplicationView from '../ApplicationView/ApplicationView';
 import { HubCapsule } from '@aws-amplify/core/lib/Hub';
 
 
