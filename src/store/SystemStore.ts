@@ -6,7 +6,7 @@ export interface UserInfo {
 }
 
 export interface Dialect {
-  id: string;
+  id: number;
   displayName: string;
   description: string;
 }

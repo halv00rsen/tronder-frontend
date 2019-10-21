@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-
-
-
-
 .router-link {
   color: white;
   text-decoration: none;
@@ -19,8 +15,6 @@
 .router-link-active {
   border: 1px solid black;
 }
-
-
 
 .dialect-entry {
   margin: 1em;
@@ -40,8 +34,6 @@
   font-size: 80%;
 }
 
-
-
 .word-entry {
   border: 1px solid gray;
   border-radius: 7px;
@@ -52,6 +44,7 @@
 .word-entry-wrapper {
   margin: 0.5em;
 }
+
 .word-entry-text {
   padding: 1em;
   background-color: #375c5c;

@@ -18,6 +18,9 @@ const WordView: React.FC<WordViewProps> = (props) => {
     <div>
       <div className="word-view-header">
         {props.store.wordStore.activeDialect && props.store.wordStore.activeDialect.displayName}
+        <button onClick={() => props.store.wordStore.reloadActiveDialect()}>
+          Reload
+        </button>
       </div>
       <div className="word-view-words">
         {props.store.wordStore.words.map((word) => {

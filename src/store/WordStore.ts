@@ -11,6 +11,8 @@ export interface Word {
 
 export class WordStore {
 
+  private wordsInDialect: {[dialectId: number]: Word[]} = {};
+
   @observable words: Word[] = [];
   @observable activeDialect?: Dialect = undefined;
 
@@ -30,17 +32,59 @@ export class WordStore {
   setActiveDialect(dialect?: Dialect) {
     if (dialect) {
       this.activeDialect = dialect;
-      API.get('tronder-api', `/dialect/${dialect.id}/word`, {}).then((words: Word[]) => {
-        this.words = words;
-      });
+      if (this.isWordsLoadedForDialect(dialect)) {
+        this.words = this.getWordsInDialect(dialect);
+      } else {
+        this.loadWordsForDialect(dialect);
+      }
     } else {
-      this.activeDialect = undefined;
-      this.words = [];
+      this.removeActiveDialect();
     }
   }
 
+  @action
+  reloadActiveDialect(): void {
+    if (this.activeDialect === undefined) {
+      throw new Error('Cannot reload words when no dialect is chosen');
+    }
+    this.loadWordsForDialect(this.activeDialect);
+  }
+
+  @action
+  private removeActiveDialect(): void {
+    this.activeDialect = undefined;
+    this.words = [];
+  }
+
+  @action
+  private loadWordsForDialect(dialect: Dialect): void {
+    API.get('tronder-api', `/dialect/${dialect.id}/word`, {}).then((words: Word[]) => {
+      this.wordsInDialect[dialect.id] = words;
+      this.words = words;
+    });
+  }
+
+  private isWordsLoadedForDialect(dialect: Dialect): boolean {
+    try {
+      this.getWordsInDialect(dialect);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  private getWordsInDialect(dialect: Dialect): Word[] {
+    const dialectId = dialect.id;
+    if (this.wordsInDialect[dialectId] !== undefined) {
+      return this.wordsInDialect[dialectId];
+    }
+    throw new Error(`No words found for dialect ${dialectId}`);
+  }
+
   @computed
-  get isActiveDialect(): boolean {
+  get isActiveDialect(): boolean  {
     return this.activeDialect !== undefined;
   }
+
+
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InjectedStoreProps } from 'store/Store';
 import { inject, observer } from 'mobx-react';
 import PrivateComponent from 'components/PrivateComponent';
@@ -9,6 +9,10 @@ import { routes } from 'routes';
 const DialectView: React.FC = (props) => {
 
   const [store] = useState((props as InjectedStoreProps).store);
+
+  useEffect(() => {
+    store.wordStore.setActiveDialect();
+  }, [store.wordStore]);
 
   return (
     <div>
