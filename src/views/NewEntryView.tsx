@@ -1,7 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { inject } from 'mobx-react';
 import { InjectedStoreProps } from 'store/Store';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, Redirect } from 'react-router';
 import { routes } from 'routes';
 
 interface NewEntryViewProps extends RouteComponentProps, InjectedStoreProps {
@@ -13,10 +13,10 @@ const NewEntryView: React.FC<NewEntryViewProps> = (props) => {
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
   const [description, setDescription] = useState('');
+  const [cancle, setCancle] = useState(false);
 
 
-  const submitWord = (event: FormEvent) => {
-    event.preventDefault();
+  const submitWord = () => {
     props.store.wordStore.addWord({
       wordText: word.trim(),
       description: description.trim(),
@@ -27,18 +27,26 @@ const NewEntryView: React.FC<NewEntryViewProps> = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => submitWord(e)}>
-        <input type="text" value={word} name="word" required={true} placeholder="Ord/uttrykk"
-          onChange={(e) => setWord(e.target.value)}/>
-        <br/>
-        <input type="text" value={meaning} name="meaning" required={true} placeholder="Betydning"
-          onChange={(e) => setMeaning(e.target.value)}/>
-        <input type="submit" value="Lagre"/>
-        <br/>
-        <input type="text" value={description} placeholder="Beskrivelse"
-          onChange={(e) => setDescription(e.target.value)}/>
-      </form>
+    <div className="new-entry-view">
+      {cancle && <Redirect to={routes.words.path}/>}
+      <h2>
+        {/* {props.store.wordStore.activeDialect && props.store.wordStore.activeDialect.displayName} */}
+        Nytt ord
+      </h2>
+      <input type="text" className="input-field" value={word} name="word" required={true} placeholder="Ord/uttrykk"
+        onChange={(e) => setWord(e.target.value)}/>
+      <input type="text" className="input-field" value={meaning} name="meaning" required={true} placeholder="Betydning"
+        onChange={(e) => setMeaning(e.target.value)}/>
+      <input type="text" className="input-field" value={description} placeholder="Beskrivelse"
+        onChange={(e) => setDescription(e.target.value)}/>
+      <div>
+        <button type="button" className="button save-button" onClick={submitWord}>
+          Lagre
+        </button>
+        <button type="button" className="button cancle-button" onClick={() => setCancle(true)}>
+          Avbryt
+        </button>
+      </div>
     </div>
   );
 };

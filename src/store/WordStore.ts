@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { Dialect } from './SystemStore';
 import { API } from 'aws-amplify';
 
@@ -10,6 +10,7 @@ export interface Word {
 }
 
 export class WordStore {
+
   @observable words: Word[] = [];
   @observable activeDialect?: Dialect = undefined;
 
@@ -36,5 +37,10 @@ export class WordStore {
       this.activeDialect = undefined;
       this.words = [];
     }
+  }
+
+  @computed
+  get isActiveDialect(): boolean {
+    return this.activeDialect !== undefined;
   }
 }

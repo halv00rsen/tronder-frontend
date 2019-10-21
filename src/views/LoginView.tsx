@@ -14,14 +14,7 @@ const LoginView: React.FC = (props) => {
   }
   return (
     <div className="App">
-      <div className="header">
-        <div className="header-content">
-          <h2>Trøndr</h2>
-        </div>
-      </div>
-      <div className="content">
-        <Authenticator/>
-      </div>
+      <Authenticator/>
     </div>
   );
 };

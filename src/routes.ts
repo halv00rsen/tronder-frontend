@@ -1,5 +1,5 @@
 
-interface DisplayRoute {
+export interface DisplayRoute {
   path: string;
   displayName: string;
 }
@@ -10,6 +10,9 @@ type Routes = {
   newEntry: DisplayRoute,
   login: DisplayRoute,
   dialect: DisplayRoute,
+  user: DisplayRoute,
+  newDialect: DisplayRoute,
+  home: DisplayRoute,
 };
 
 
@@ -31,7 +34,19 @@ export const routes: Routes = {
     path: '/login',
   },
   dialect: {
-    displayName: 'Dialect',
+    displayName: 'Dialekter',
     path: '/dialect',
+  },
+  user: {
+    displayName: 'Bruker',
+    path: '/user',
+  },
+  newDialect: {
+    displayName: 'Ny dialekt',
+    path: '/new-dialect',
+  },
+  home: {
+    displayName: 'Hjem',
+    path: '/',
   },
 };
