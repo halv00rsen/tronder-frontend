@@ -35,10 +35,19 @@ const WordView: React.FC<WordViewProps> = (props) => {
   return (
     <div>
       <div className="word-view-header">
-        {props.store.wordStore.activeDialect && props.store.wordStore.activeDialect.displayName}
-        <button onClick={() => props.store.wordStore.reloadActiveDialect()}>
-          Reload
-        </button>
+        <div className="word-view-header-text">
+          {props.store.wordStore.activeDialect && props.store.wordStore.activeDialect.displayName}
+        </div>
+        <div>
+          <button onClick={() => props.store.wordStore.reloadActiveDialect()}>
+            Reload
+          </button>
+          <PrivateComponent>
+            <NavLink to={routes.newEntry.relativePath(dialectId)}>
+              {routes.newEntry.displayName}
+            </NavLink>
+          </PrivateComponent>
+        </div>
       </div>
       {loading ? 'Laster ord...' :
       <>
@@ -50,8 +59,8 @@ const WordView: React.FC<WordViewProps> = (props) => {
           })}
         </div>
         <PrivateComponent>
-          <NavLink to={routes.newEntry.relativePath(dialectId)}>
-            {routes.newEntry.displayName}
+          <NavLink className="bottom-add-button" to={routes.newEntry.relativePath(dialectId)}>
+            +
           </NavLink>
         </PrivateComponent>
       </>

@@ -1,0 +1,10 @@
+
+.user-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logout-button {
+
+}

@@ -1,7 +1,13 @@
 
 .word-view-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.word-view-header-text {
   font-size: 150%;
-  padding: 1em 0 1em 0;
 }
 
 .word-view-words {
@@ -10,4 +16,58 @@
   flex-wrap: wrap;
   align-items: stretch;
   flex-direction: column;
+}
+
+.bottom-add-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 7%;
+  bottom: 3%;
+  border: 1px solid gray;
+  background-color: rgb(227, 255, 208);
+  text-decoration: none;
+  color: black;
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+  font-size: 130%;
+  -webkit-box-shadow: 1px 5px 12px 0px rgba(0,0,0,0.56);
+  -moz-box-shadow: 1px 5px 12px 0px rgba(0,0,0,0.56);
+  box-shadow: 1px 5px 12px 0px rgba(0,0,0,0.56);
+  transition: 0.3s;
+}
+
+.bottom-add-button:hover {
+  background-color: rgba(205, 248, 176);
+}
+
+.word-entry {
+  border: 1px solid gray;
+  flex-grow: 1;
+}
+
+.word-entry-wrapper {
+  margin: 0.5em;
+}
+
+.word-entry-text {
+  padding: 1em;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.word-entry-text:hover {
+  background-color: #ebe9e9;
+}
+
+.word-entry-description {
+  padding: 0.5em;
+  border-width: 0 1px 1px 1px;
+  border-color: gray;
+  border-style: solid;
 }
