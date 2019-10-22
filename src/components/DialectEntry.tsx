@@ -22,6 +22,7 @@ const DialectEntry: React.FC<DialectEntryProps> = (props) => {
     <div className="dialect-entry">
       <div onClick={setActiveDialect} className="dialect-entry-name">
         {props.dialect.displayName}
+        <i>{props.dialect.publicDialect ? 'Offentlig' : 'Privat'}</i>
       </div>
       <div className="dialect-entry-description">
         {props.dialect.description}

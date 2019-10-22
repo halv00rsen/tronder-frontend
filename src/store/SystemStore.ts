@@ -3,12 +3,15 @@ import { observable, action } from 'mobx';
 export interface UserInfo {
   email: string;
   name: string;
+  sub: string;
 }
 
 export interface Dialect {
   id: number;
   displayName: string;
   description: string;
+  createdBy: string;
+  publicDialect: boolean;
 }
 
 export class SystemStore {
@@ -32,5 +35,16 @@ export class SystemStore {
 
   get isLoggedIn() {
     return this.user !== undefined;
+  }
+
+  get userDialects(): Dialect[] {
+    if (this.user) {
+      return this.dialects.filter((dialect) => dialect.createdBy === this.user!.sub);
+    }
+    return [];
+  }
+
+  get publicDialects(): Dialect[] {
+    return this.dialects.filter((dialect) => dialect.publicDialect);
   }
 }

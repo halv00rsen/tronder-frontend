@@ -16,24 +16,6 @@
   border: 1px solid black;
 }
 
-.dialect-entry {
-  margin: 1em;
-  border: 1px solid#acacac;
-  border-radius: 7px;
-}
-
-.dialect-entry-name {
-  cursor: pointer;
-  padding: 1em;
-  border-bottom: 1px solid #acacac;
-  font-size: 110%;
-}
-
-.dialect-entry-description {
-  padding: 1em;
-  font-size: 80%;
-}
-
 .input-field {
   display: block;
   width: 80%;

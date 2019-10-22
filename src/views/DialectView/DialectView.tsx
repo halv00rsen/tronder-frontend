@@ -19,16 +19,26 @@ const DialectView: React.FC = (props) => {
   return (
     <div>
       <div className="dialect-header">
-        <h2>Dialekter</h2>
-        <PrivateComponent>
+        <h2>Åpne Dialekter</h2>
+      </div>
+      {store.system.publicDialects.map(dialect => {
+        return <DialectEntry key={dialect.id} dialect={dialect}/>;
+      })}
+      <PrivateComponent>
+        <div className="dialect-header">
+          <h2>Dine Dialekter</h2>
           <NavLink to={routes.newDialect.path}>
             Ny dialekt
           </NavLink>
-        </PrivateComponent>
-      </div>
-      {store.system.dialects.map(dialect => {
-        return <DialectEntry key={dialect.id} dialect={dialect}/>;
-      })}
+        </div>
+        {store.system.userDialects.length !== 0 ?
+          store.system.userDialects.map(dialect => {
+            return <DialectEntry key={'private-' + dialect.id} dialect={dialect}/>;
+          })
+          :
+          <i>Her var det tomt</i>
+        }
+      </PrivateComponent>
     </div>
   );
 };

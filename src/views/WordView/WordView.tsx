@@ -28,9 +28,14 @@ const WordView: React.FC<WordViewProps> = (props) => {
       props.store.wordStore.setActiveDialect(dialect);
       setLoading(false);
     } else {
-      console.log('ERROROROROR');
+      props.history.push(routes.dialect.path);
     }
-  }, [dialectId, props.store.wordStore, props.store.system.dialects]);
+  }, [
+    dialectId,
+    props.store.wordStore,
+    props.store.system.dialects,
+    props.history,
+  ]);
 
   return (
     <div>

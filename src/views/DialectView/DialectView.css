@@ -5,3 +5,29 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.dialect-entry i {
+  font-size: 75%;
+}
+
+.dialect-entry-name {
+  cursor: pointer;
+  padding: 1em;
+  border-bottom: 1px solid #acacac;
+  font-size: 110%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialect-entry {
+  margin: 1em;
+  border: 1px solid#acacac;
+  border-radius: 7px;
+}
+
+.dialect-entry-description {
+  padding: 1em;
+  font-size: 80%;
+}

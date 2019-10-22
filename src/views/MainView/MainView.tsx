@@ -20,6 +20,7 @@ const MainView: React.FC = (props) => {
         store.system.setUserInfo({
           email: data.attributes.email,
           name: data.attributes.name,
+          sub: data.attributes.sub,
         });
       } else {
         store.system.setUserInfo(undefined);
