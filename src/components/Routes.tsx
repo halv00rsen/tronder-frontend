@@ -19,6 +19,7 @@ const Routes: React.FC = (props) => {
   return (
     <Switch>
       <Route
+        exact={true}
         path={routes.dialect.path}
         component={DialectView}/>
       <Route
@@ -32,12 +33,10 @@ const Routes: React.FC = (props) => {
         exact={true}
         path={routes.home.path}
         component={HomeView}/>
-
-      <PrivateRoute
+      <Route
         path={routes.words.path}
-        condition={store.wordStore.isActiveDialect}
-        overrideLogin={true}
         component={WordView}/>
+
       <PrivateRoute
         path={routes.newDialect.path}
         component={NewDialectView}/>

@@ -26,7 +26,9 @@ const WordEntry: React.FC<WordEntryProps> = (props) => {
       </div>
       {clicked &&
         <div className="word-entry-description">
-          {props.word.description}
+          {props.word.description ?
+            props.word.description :
+            <i>Ingen beskrivelse</i>}
         </div>
       }
     </div>

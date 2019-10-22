@@ -3,6 +3,8 @@
   max-width: 1000px;
   margin: auto;
   padding: 0 1em 0 1em;
+  height: 90vh;
+  overflow: auto;
 }
 
 .header {

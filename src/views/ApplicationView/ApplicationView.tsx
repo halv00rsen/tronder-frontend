@@ -12,11 +12,13 @@ import './ApplicationView.css';
 
 const ApplicationView: React.FC = (props) => {
 
+  const [loading, setLoading] = useState(true);
   const [store] = useState((props as InjectedStoreProps).store);
 
   useEffect(() => {
     API.get('tronder-api', '/dialect', {}).then((dialects: Dialect[]) => {
       store.system.setInitialDialects(dialects);
+      setLoading(false);
     });
   }, [store.system]);
 
@@ -30,7 +32,7 @@ const ApplicationView: React.FC = (props) => {
             </h2>
           </NavLink>
           {store.wordStore.activeDialect ?
-          <NavLink to={routes.words.path} className="header-text">
+          <NavLink to={routes.words.relativePath(store.wordStore.activeDialect.id)} className="header-text">
             {store.wordStore.activeDialect.displayName}
           </NavLink>
           : ''
@@ -42,7 +44,9 @@ const ApplicationView: React.FC = (props) => {
         </div>
       </div>
       <div className="content">
+        {loading ? 'Laster data...' :
         <Routes/>
+        }
       </div>
     </Router>
   );

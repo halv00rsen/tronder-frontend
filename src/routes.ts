@@ -4,10 +4,14 @@ export interface DisplayRoute {
   displayName: string;
 }
 
+export interface RelativeDisplayRoute extends DisplayRoute {
+  relativePath: (dialectId: number) => string;
+}
+
 type Routes = {
-  words: DisplayRoute,
+  words: RelativeDisplayRoute,
   notFound: DisplayRoute,
-  newEntry: DisplayRoute,
+  newEntry: RelativeDisplayRoute,
   login: DisplayRoute,
   dialect: DisplayRoute,
   user: DisplayRoute,
@@ -18,8 +22,11 @@ type Routes = {
 
 export const routes: Routes = {
   words: {
-    displayName: 'Ord',
-    path: '/words',
+    displayName: 'Masse ord',
+    path: '/dialect/:dialectId/words',
+    relativePath(dialectId: number): string {
+      return `/dialect/${dialectId}/words`;
+    },
   },
   notFound: {
     displayName: 'Ikke funnet',
@@ -27,7 +34,10 @@ export const routes: Routes = {
   },
   newEntry: {
     displayName: 'Nytt uttrykk',
-    path: '/new',
+    path: '/dialect/:dialectId/new',
+    relativePath(dialectId: number): string {
+      return `/dialect/${dialectId}/new`;
+    },
   },
   login: {
     displayName: 'Logg inn',

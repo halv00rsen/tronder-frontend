@@ -21,9 +21,11 @@ export class WordStore {
     if (!this.activeDialect) {
       return;
     }
+    const dialectId = this.activeDialect.id;
     API.post('tronder-api', `/dialect/${this.activeDialect.id}/word`, {
       body: word,
     }).then((word: Word) => {
+      this.wordsInDialect[dialectId].push(word);
       this.words.push(word);
     });
   }
@@ -85,6 +87,5 @@ export class WordStore {
   get isActiveDialect(): boolean  {
     return this.activeDialect !== undefined;
   }
-
 
 }

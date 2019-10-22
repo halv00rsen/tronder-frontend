@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { InjectedStoreProps } from 'store/Store';
 import { inject, observer } from 'mobx-react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, useParams } from 'react-router';
 import PrivateComponent from 'components/PrivateComponent';
 import { routes } from 'routes';
 import { NavLink } from 'react-router-dom';
 import WordEntry from 'components/WordEntry';
 
 import './WordView.css';
+import { Dialect } from 'store/SystemStore';
 
 interface WordViewProps extends InjectedStoreProps, RouteComponentProps {
 }
 
+interface WordViewRouteProps {
+  dialectId: string;
+}
+
 const WordView: React.FC<WordViewProps> = (props) => {
+
+  const [loading, setLoading] = useState(true);
+  const dialectId = Number(useParams<WordViewRouteProps>().dialectId);
+
+  useEffect(() => {
+    const dialect = props.store.system.dialects.find((dialect: Dialect) => dialect.id === dialectId);
+    if (dialect) {
+      props.store.wordStore.setActiveDialect(dialect);
+      setLoading(false);
+    } else {
+      console.log('ERROROROROR');
+    }
+  }, [dialectId, props.store.wordStore, props.store.system.dialects]);
 
   return (
     <div>
@@ -22,18 +40,22 @@ const WordView: React.FC<WordViewProps> = (props) => {
           Reload
         </button>
       </div>
-      <div className="word-view-words">
-        {props.store.wordStore.words.map((word) => {
-          return (
-            <WordEntry key={word.id} word={word}/>
-          );
-        })}
-      </div>
-      <PrivateComponent>
-        <NavLink to={routes.newEntry.path}>
-          {routes.newEntry.displayName}
-        </NavLink>
-      </PrivateComponent>
+      {loading ? 'Laster ord...' :
+      <>
+        <div className="word-view-words">
+          {props.store.wordStore.words.map((word) => {
+            return (
+              <WordEntry key={word.id} word={word}/>
+            );
+          })}
+        </div>
+        <PrivateComponent>
+          <NavLink to={routes.newEntry.relativePath(dialectId)}>
+            {routes.newEntry.displayName}
+          </NavLink>
+        </PrivateComponent>
+      </>
+      }
     </div>
   );
 };
