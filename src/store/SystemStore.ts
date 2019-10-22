@@ -12,6 +12,7 @@ export interface Dialect {
   description: string;
   createdBy: string;
   publicDialect: boolean;
+  numWords: number;
 }
 
 export class SystemStore {

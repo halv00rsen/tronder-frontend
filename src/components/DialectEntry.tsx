@@ -26,6 +26,9 @@ const DialectEntry: React.FC<DialectEntryProps> = (props) => {
       </div>
       <div className="dialect-entry-description">
         {props.dialect.description}
+        <p>
+          Antall ord og uttrykk: {props.dialect.numWords}
+        </p>
       </div>
     </div>
   );

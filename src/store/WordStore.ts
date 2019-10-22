@@ -22,10 +22,11 @@ export class WordStore {
       return;
     }
     const dialectId = this.activeDialect.id;
-    API.post('tronder-api', `/dialect/${this.activeDialect.id}/word`, {
+    API.post('tronder-api', `/dialect/${dialectId}/word`, {
       body: word,
     }).then((word: Word) => {
       this.wordsInDialect[dialectId].push(word);
+      this.activeDialect!.numWords += 1;
       this.words.push(word);
     });
   }
