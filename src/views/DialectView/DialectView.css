@@ -12,19 +12,23 @@
 
 .dialect-entry-name {
   cursor: pointer;
+  background-color: #f3f3f3;
+  transition: 0.3s;
   padding: 1em;
   border-bottom: 1px solid #acacac;
-  font-size: 110%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
+.dialect-entry-name:hover {
+  background-color: #ebe9e9;
+}
+
 .dialect-entry {
   margin: 1em;
   border: 1px solid#acacac;
-  border-radius: 7px;
 }
 
 .dialect-entry-description {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Word } from 'store/WordStore';
+import { ENTER_KEY } from 'utils/constants';
 
 interface WordEntryProps {
   word: Word;
@@ -12,18 +13,12 @@ const WordEntry: React.FC<WordEntryProps> = (props) => {
     setClicked(!clicked);
   };
 
-  const keyPress = (event: React.KeyboardEvent) => {
-    if (event.charCode === 13) {
-      clickEntry();
-    }
-  };
-
   return (
     <div className="word-entry-wrapper">
       <div className="word-entry">
         <div className={`word-entry-text ${clicked ? 'word-entry-text-clicked' : ''}`}
             onClick={clickEntry}
-            onKeyPress={keyPress}
+            onKeyPress={(e) => e.charCode === ENTER_KEY && clickEntry()}
             tabIndex={0}
             role="button">
           <div>
