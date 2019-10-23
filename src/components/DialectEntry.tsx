@@ -15,12 +15,20 @@ const DialectEntry: React.FC<DialectEntryProps> = (props) => {
     setRedirect(true);
   };
 
+  const keyPress = (e: React.KeyboardEvent) => {
+    if (e.charCode === 13) {
+      setActiveDialect();
+    }
+  };
+
   if (redirect) {
     return <Redirect to={routes.words.relativePath(props.dialect.id)}/>;
   }
   return (
     <div className="dialect-entry">
-      <div onClick={setActiveDialect} className="dialect-entry-name">
+      <div onClick={setActiveDialect}
+          onKeyPress={keyPress}
+          className="dialect-entry-name" role="button" tabIndex={0}>
         {props.dialect.displayName}
         <i>{props.dialect.publicDialect ? 'Offentlig' : 'Privat'}</i>
       </div>
