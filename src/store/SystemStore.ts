@@ -13,11 +13,13 @@ export interface Dialect {
   createdBy: string;
   publicDialect: boolean;
   numWords: number;
+  hallmarks: string[];
 }
 
 export class SystemStore {
   @observable user?: UserInfo;
   @observable dialects: Dialect[] = [];
+  @observable hallmarks: string[] = [];
 
   @action
   addDialect(dialect: Dialect) {
@@ -32,6 +34,11 @@ export class SystemStore {
   @action
   setInitialDialects(dialects: Dialect[]) {
     this.dialects = dialects;
+  }
+
+  @action
+  setInitialHallmarks(hallmarks: string[]) {
+    this.hallmarks = hallmarks;
   }
 
   get isLoggedIn() {

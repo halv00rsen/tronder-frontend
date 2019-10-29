@@ -20,6 +20,9 @@ const ApplicationView: React.FC = (props) => {
       store.system.setInitialDialects(dialects);
       setLoading(false);
     });
+    API.get('tronder-api', '/hallmark', {}).then((hallmarks: string[]) => {
+      store.system.setInitialHallmarks(hallmarks);
+    });
   }, [store.system]);
 
   return (

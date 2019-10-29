@@ -30,6 +30,14 @@ const DialectEntry: React.FC<DialectEntryProps> = (props) => {
       <div className="dialect-entry-description">
         {props.dialect.description}
       </div>
+      <div className="dialect-entry-hallmarks">
+        <b>Kjennetegn</b>
+        <ul>
+          {props.dialect.hallmarks.map((hallmark: string) => {
+            return <li key={`dialect-${props.dialect.id}-hallmark-${hallmark}`}>{hallmark}</li>;
+          })}
+        </ul>
+      </div>
     </div>
   );
 };

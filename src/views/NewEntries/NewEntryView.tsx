@@ -38,11 +38,11 @@ const NewEntryView: React.FC<NewEntryViewProps> = (props) => {
         Nytt ord
       </h2>
       <input type="text" className="input-field" value={word} name="word" required={true} placeholder="Ord/uttrykk"
-        onChange={(e) => setWord(e.target.value)}/>
+        onChange={(e) => setWord(e.target.value)} autoComplete="off"/>
       <input type="text" className="input-field" value={meaning} name="meaning" required={true} placeholder="Betydning"
-        onChange={(e) => setMeaning(e.target.value)}/>
+        onChange={(e) => setMeaning(e.target.value)} autoComplete="off"/>
       <input type="text" className="input-field" value={description} placeholder="Beskrivelse"
-        onChange={(e) => setDescription(e.target.value)}/>
+        onChange={(e) => setDescription(e.target.value)} autoComplete="off"/>
       <div>
         <button type="button" className="button save-button" onClick={submitWord}>
           Lagre
