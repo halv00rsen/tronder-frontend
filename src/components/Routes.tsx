@@ -12,6 +12,7 @@ import { inject } from 'mobx-react';
 import { observer } from 'mobx-react-lite';
 import NewDialectView from 'views/NewEntries/NewDialectView';
 import HomeView from 'views/HomeView/HomeView';
+import PrivateDialectView from 'views/DialectView/PrivateDialectView';
 
 const Routes: React.FC = (props) => {
   const [store] = useState((props as InjectedStoreProps).store);
@@ -22,6 +23,10 @@ const Routes: React.FC = (props) => {
         exact={true}
         path={routes.dialect.path}
         component={DialectView}/>
+      <Route
+        exact={true}
+        path={routes.privateDialects.path}
+        component={PrivateDialectView}/>
       <Route
         path={routes.login.path}
         component={LoginView}/>

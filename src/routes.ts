@@ -14,6 +14,7 @@ type Routes = {
   newEntry: RelativeDisplayRoute,
   login: DisplayRoute,
   dialect: DisplayRoute,
+  privateDialects: DisplayRoute,
   user: DisplayRoute,
   newDialect: DisplayRoute,
   home: DisplayRoute,
@@ -43,9 +44,13 @@ export const routes: Routes = {
     displayName: 'Logg inn',
     path: '/login',
   },
+  privateDialects: {
+    displayName: 'Dine dialekter',
+    path: '/privateDialects',
+  },
   dialect: {
     displayName: 'Dialekter',
-    path: '/dialect',
+    path: '/dialects',
   },
   user: {
     displayName: 'Bruker',

@@ -9,6 +9,7 @@ import NavigationLink from 'components/NavigationLink';
 import Routes from 'components/Routes';
 
 import './ApplicationView.css';
+import PrivateLink from 'components/PrivateLink';
 
 const ApplicationView: React.FC = (props) => {
 
@@ -42,6 +43,11 @@ const ApplicationView: React.FC = (props) => {
           }
           <div>
             <NavigationLink route={routes.dialect}/>
+            <PrivateLink
+              activeClassName="router-link-active"
+              className="router-link"
+              displayText={routes.privateDialects.displayName}
+              route={routes.privateDialects.path}/>
             <NavigationLink route={store.system.isLoggedIn ? routes.user : routes.login}/>
           </div>
         </div>
