@@ -17,7 +17,7 @@ const DialectEntry: React.FC<DialectEntryProps> = (props) => {
   };
 
   if (redirect) {
-    return <Redirect to={routes.words.relativePath(props.dialect.id)}/>;
+    return <Redirect push to={routes.words.relativePath(props.dialect.id)}/>;
   }
   return (
     <div className="dialect-entry">
