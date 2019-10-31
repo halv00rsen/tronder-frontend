@@ -1,4 +1,15 @@
 
+.word-view-header-text {
+  font-size: 150%;
+}
+
+.word-view-word-section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .word-view-header {
   display: flex;
   flex-direction: row;
@@ -6,8 +17,10 @@
   align-items: center;
 }
 
-.word-view-header-text {
-  font-size: 150%;
+.word-view-divider {
+  border-bottom: 1px solid rgb(209, 209, 209);
+  margin-bottom: 1em;
+  padding-bottom: 1em;
 }
 
 .word-view-words {

@@ -14,6 +14,7 @@ export interface Dialect {
   publicDialect: boolean;
   numWords: number;
   hallmarks: string[];
+  userInfo?: UserInfo;
 }
 
 export class SystemStore {
