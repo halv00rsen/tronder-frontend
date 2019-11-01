@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"tronderfrontendbb65d79f": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

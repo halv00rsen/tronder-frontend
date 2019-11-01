@@ -1,0 +1,19 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "tronder-frontend-prod-20191101135257-authRole",
+            "UnauthRoleArn": "arn:aws:iam::810678516828:role/tronder-frontend-prod-20191101135257-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::810678516828:role/tronder-frontend-prod-20191101135257-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "tronder-frontend-prod-20191101135257-deployment",
+            "UnauthRoleName": "tronder-frontend-prod-20191101135257-unauthRole",
+            "StackName": "tronder-frontend-prod-20191101135257",
+            "StackId": "arn:aws:cloudformation:eu-west-1:810678516828:stack/tronder-frontend-prod-20191101135257/87aa33c0-fca6-11e9-9941-020193028d12"
+        },
+        "categories": {
+            "auth": {
+                "tronderfrontendbb65d79f": {}
+            }
+        }
+    }
+}

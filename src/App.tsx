@@ -13,7 +13,7 @@ Amplify.configure({
   API: {
     endpoints: [{
       name: 'tronder-api',
-      endpoint: 'http://localhost:1234',
+      endpoint: process.env.REACT_APP_API_URL,
       custom_header: async () => {
         try {
           return {
