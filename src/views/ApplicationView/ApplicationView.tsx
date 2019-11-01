@@ -35,12 +35,6 @@ const ApplicationView: React.FC = (props) => {
               Trøndr
             </h2>
           </NavLink>
-          {store.wordStore.activeDialect ?
-          <NavLink to={routes.words.relativePath(store.wordStore.activeDialect.id)} className="header-text">
-            {store.wordStore.activeDialect.displayName}
-          </NavLink>
-          : ''
-          }
           <div>
             <NavigationLink route={routes.dialect}/>
             <PrivateLink
