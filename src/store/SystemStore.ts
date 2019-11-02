@@ -21,6 +21,12 @@ export class SystemStore {
   @observable user?: UserInfo;
   @observable dialects: Dialect[] = [];
   @observable hallmarks: string[] = [];
+  @observable screenWidth: number = 0;
+
+  @action
+  setScreenWidth(screenWidth: number) {
+    this.screenWidth = screenWidth;
+  }
 
   @action
   addDialect(dialect: Dialect) {
@@ -55,5 +61,9 @@ export class SystemStore {
 
   get publicDialects(): Dialect[] {
     return this.dialects.filter((dialect) => dialect.publicDialect);
+  }
+
+  get isMobileView(): boolean {
+    return this.screenWidth < 500;
   }
 }

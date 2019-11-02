@@ -7,6 +7,7 @@ interface PrivateLinkProps {
   route: string;
   className?: string;
   activeClassName?: string;
+  clicked?: () => void;
 }
 
 const PrivateLink: React.FC<PrivateLinkProps> = (props) => {
@@ -14,6 +15,7 @@ const PrivateLink: React.FC<PrivateLinkProps> = (props) => {
     <PrivateComponent>
       <NavLink to={props.route}
           className={props.className}
+          onClick={() => props.clicked && props.clicked()}
           activeClassName={props.activeClassName}>
         {props.displayText}
       </NavLink>

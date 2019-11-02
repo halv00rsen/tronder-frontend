@@ -46,7 +46,7 @@ export const routes: Routes = {
   },
   privateDialects: {
     displayName: 'Dine dialekter',
-    path: '/privateDialects',
+    path: '/user-dialects',
   },
   dialect: {
     displayName: 'Dialekter',
