@@ -4,13 +4,12 @@ set -e
 IFS='|'
 
 AWSCLOUDFORMATIONCONFIG="{\
-\"configLevel\":\"project\",\
 \"useProfile\":true,\
 \"profileName\":\"default\"\
 }"
-
 AMPLIFY="{\
-\"envName\":\"prod\"\
+\"envName\":\"prod\",\
+\"region\":\"eu-west-1\"
 }"
 PROVIDERS="{\
 \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
@@ -18,4 +17,5 @@ PROVIDERS="{\
 
 amplify init \
 --amplify $AMPLIFY \
+--providers $PROVIDERS \
 --yes
