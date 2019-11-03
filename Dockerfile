@@ -23,7 +23,7 @@ COPY . /src
 
 RUN npm install -g @aws-amplify/cli --silent
 RUN source amplify-init.sh
-RUN mv /src/aws-exports.js /src/aws-exports.ts
+RUN mv /src/src/aws-exports.js /src/src/aws-exports.ts
 
 RUN npm install --silent
 RUN npm install react-scripts@3.0.1 -g --silent
